@@ -120,7 +120,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.3 }}
-                    href="https://wa.me/5599982629297" 
+                    href="https://wa.me/5567998186597" 
                     target="_blank" 
                     rel="noreferrer" 
                     className="relative group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brGreen/20 to-brGreen/10 text-brGreen rounded-full hover:from-brGreen hover:to-brGreen hover:text-white transition-all duration-300 border border-brGreen/30 hover:border-brGreen hover:shadow-lg hover:shadow-brGreen/25 overflow-hidden"
@@ -453,7 +453,7 @@ const CartModal = ({ isOpen, items, onClose, onRemove }) => {
             // Redirecionar para WhatsApp com os dados
             const message = `*NOVO PEDIDO HAVAIANAS*\n\n*Dados do Cliente:*\n*Nome:* ${formData.name}\n*E-mail:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Data de Nascimento:* ${formData.birthdate}\n\n*Itens do Pedido:*\n${items.map(item => `• ${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join('\n')}\n\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n*Pedido ID:* HAV-2030-${Math.floor(Math.random() * 100000)}`;
             
-            const whatsappUrl = `https://wa.me/5599982629297?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/5567998186597?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             
             // Fechar modal após redirecionar
