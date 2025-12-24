@@ -289,38 +289,22 @@ const CatalogSection = ({ onAddToCart }) => {
             <motion.div 
                 animate={{ x: "-100%" }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/10 to-transparent flex items-center justify-center overflow-hidden z-20"
+                className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/20 to-transparent flex items-center justify-center overflow-hidden z-20"
             >
                 <div className="flex items-center gap-8 whitespace-nowrap">
-                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
                     <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
+                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
                     <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
+                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
                     <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
+                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
                     <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
                 </div>
             </motion.div>
             
-            {/* Advertising Banner */}
-            <motion.div 
-                animate={{ x: "-100%" }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute top-24 w-[300%] h-16 bg-gradient-to-r from-transparent via-brGreen/10 to-transparent flex items-center justify-center overflow-hidden z-20"
-            >
-                <div className="flex items-center gap-8 whitespace-nowrap">
-                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Promoção • 30% OFF</span>
-                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Compre Agora</span>
-                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Envio Imediato</span>
-                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Promoção • 30% OFF</span>
-                </div>
-            </motion.div>
-            
+                        
             {/* Animated Background Elements */}
             <motion.div 
                 animate={{ x: "-100%" }}
