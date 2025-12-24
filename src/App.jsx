@@ -356,13 +356,13 @@ const CatalogSection = ({ onAddToCart }) => {
 const ManifestoSection = () => (
     <section id="união" className="py-40 md:py-64 relative flex flex-col items-center overflow-hidden border-y-[20px] md:border-y-[40px] border-black" 
            style={{
-              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMDBBODU3Ii8+CjxwYXRoIGQ9Ik0wIDQwMEg0MDBWODAwSDBWNDAwWiIgZmlsbD0iI0ZGRkRGMCIvPgo8cGF0aCBkPSJNNDAwIDQwMEgxMjAwVjgwMEg0MDBWNDAwWiIgZmlsbD0iIzAwOUIzOSIvPgo8cGF0aCBkPSJNMCAwSDQwMFY0MDBIMFYwWiIgZmlsbD0iIzAwOUIzOSIvPgo8cGF0aCBkPSJNNDAwIDBIMTIwMFY0MDBINDAwVjBaIiBmaWxsPSIjMDA5QzM5Ii8+CjxwYXRoIGQ9Ik0wIDQwMEgxMjAwVjgwMEgwVjQwMFoiIGZpbGw9IiMwMDlDMzkiLz4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iNDAwIiByPSI4MCIgZmlsbD0iI0ZGRkRGMCIvPgo8L3N2Zz4K')",
+              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMDA5QzM5Ii8+CjxwYXRoIGQ9Ik02MDAgMTAwSDEwMDBMNjAwNzAwTDIwMDEwMEg2MDBaIiBmaWxsPSIjRkZGRjAwIi8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjQwMCIgcj0iMTUwIiBmaWxsPSIjMDAyNzc3Ii8+CjxyZWN0IHg9IjQ1MCIgeT0iMzgwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iNDA4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDlDMzkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9SREVNIEUgUFJPR1JFU1NPPC90ZXh0Pgo8L3N2Zz4K')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundBlend: 'overlay'
            }}>
         {/* Overlay para garantir visibilidade */}
-        <div className="absolute inset-0 bg-white/80" />
+        <div className="absolute inset-0 bg-white/40" />
         {/* Advertising Banner */}
         <motion.div 
             animate={{ x: "-100%" }}
@@ -402,7 +402,7 @@ const ManifestoSection = () => (
             </motion.div>
 
             <div className="relative pt-24 mb-10">
-                <h2 className="text-[10vw] md:text-[8rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic">
+                <h2 className="text-[12vw] md:text-[9rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic text-black drop-shadow-2xl">
                     A BANDEIRA <br />
                     <span className="relative inline-block px-4">
                         É DE TODOS <br />
