@@ -354,83 +354,75 @@ const CatalogSection = ({ onAddToCart }) => {
 };
 
 const ManifestoSection = () => (
-    <section id="união" className="py-40 md:py-64 relative flex flex-col items-center overflow-hidden border-y-[20px] md:border-y-[40px] border-black" 
-           style={{
-              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMDA5QzM5Ii8+CjxwYXRoIGQ9Ik02MDAgMTAwSDEwMDBMNjAwNzAwTDIwMDEwMEg2MDBaIiBmaWxsPSIjRkZGRjAwIi8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjQwMCIgcj0iMTUwIiBmaWxsPSIjMDAyNzc3Ii8+CjxyZWN0IHg9IjQ1MCIgeT0iMzgwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iNDA4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDlDMzkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9SREVNIEUgUFJPR1JFU1NPPC90ZXh0Pgo8L3N2Zz4K')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundBlend: 'overlay'
-           }}>
-        {/* Overlay para garantir visibilidade */}
-        <div className="absolute inset-0 bg-white/40" />
-        {/* Advertising Banner */}
+    <section id="união" className="py-20 md:py-32 bg-[#009C39] text-black relative flex flex-col items-center overflow-hidden">
+        {/* Animated Background Elements */}
         <motion.div 
             animate={{ x: "-100%" }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-black/5 to-transparent flex items-center justify-center overflow-hidden"
+            className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-white/10 to-transparent flex items-center justify-center overflow-hidden"
         >
             <div className="flex items-center gap-8 whitespace-nowrap">
-                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
-                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Feito no Brasil</span>
-                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Tradição desde 1962</span>
-                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
+                <span className="text-white/30 font-black text-lg md:text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
+                <span className="text-white/40 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/30 font-black text-lg md:text-xl tracking-[0.3em] uppercase">Feito no Brasil</span>
+                <span className="text-white/40 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/30 font-black text-lg md:text-xl tracking-[0.3em] uppercase">Tradição desde 1962</span>
+                <span className="text-white/40 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/30 font-black text-lg md:text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
             </div>
         </motion.div>
         
-        {/* Animated Background Lines */}
+        {/* Background Lines */}
         <motion.div 
             animate={{ x: "-100%" }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/3 w-[200%] h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"
+            className="absolute top-1/3 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
         />
         <motion.div 
             animate={{ x: "100%" }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute top-2/3 w-[200%] h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"
+            className="absolute top-2/3 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
         />
         
-        <div className="container mx-auto px-6 flex flex-col items-center text-center mt-20 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center mt-12 md:mt-20 relative z-10">
             <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="mb-16"
+                className="mb-8 md:mb-16"
             >
-                <Star size={120} className="text-secondary" fill="currentColor" />
+                <Star size={80} className="text-yellow-400 md:size-[120px]" fill="currentColor" />
             </motion.div>
 
-            <div className="relative pt-24 mb-10">
-                <h2 className="text-[12vw] md:text-[9rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic text-black drop-shadow-2xl">
+            <div className="relative pt-12 md:pt-24 mb-8 md:mb-10">
+                <h2 className="text-[8vw] md:text-[6rem] lg:text-[9rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic text-black">
                     A BANDEIRA <br />
-                    <span className="relative inline-block px-4">
+                    <span className="relative inline-block px-2 md:px-4">
                         É DE TODOS <br />
                         NÓS
-                        <div className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-4 md:h-12 bg-secondary -z-10 skew-x-[-15deg] origin-left" />
+                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-2 md:h-12 bg-yellow-400 -z-10 skew-x-[-15deg] origin-left" />
                     </span>
                 </h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-24 items-center mt-40 text-left max-w-7xl">
-                <div className="space-y-12">
-                    <h3 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] border-l-[16px] border-brGreen pl-10">O passo que <br /> une toda uma <span className="text-brGreen">Nação</span>.</h3>
-                    <p className="text-2xl text-gray-500 font-bold leading-relaxed">Havaianas não escolhe lado. Onde houver sol, areia ou asfalto, estaremos lá. Conforto é um direito, brasilidade é nosso DNA.</p>
+            <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mt-20 md:mt-40 text-left max-w-6xl lg:max-w-7xl w-full">
+                <div className="space-y-6 md:space-y-12 px-4">
+                    <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9] border-l-[12px] md:border-l-[16px] border-yellow-400 pl-6 md:pl-10">O passo que <br /> une toda uma <span className="text-yellow-400">Nação</span>.</h3>
+                    <p className="text-lg md:text-2xl text-black/80 font-bold leading-relaxed">Havaianas não escolhe lado. Onde houver sol, areia ou asfalto, estaremos lá. Conforto é um direito, brasilidade é nosso DNA.</p>
                 </div>
-                <motion.img whileHover={{ rotate: 0 }} src={IMG_MODELS} className="rounded-[80px] shadow-[0_50px_100px_rgba(0,0,0,0.3)] border-[20px] border-white rotate-2 w-full transition-transform duration-1000" />
+                <motion.img whileHover={{ rotate: 0 }} src={IMG_MODELS} className="rounded-[40px] md:rounded-[80px] shadow-[0_30px_60px_rgba(0,0,0,0.2)] border-[10px] md:border-[20px] border-white rotate-2 w-full transition-transform duration-1000" />
             </div>
         </div>
 
-        {/* Floating Accents Re-added */}
+        {/* Floating Accents */}
         <motion.div
-            animate={{ y: [0, 50, 0], x: [0, 30, 0] }}
+            animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute top-1/2 left-10 w-32 h-32 bg-secondary/10 blur-3xl rounded-full"
+            className="absolute top-1/2 left-4 md:left-10 w-20 md:w-32 h-20 md:h-32 bg-yellow-400/20 blur-2xl md:blur-3xl rounded-full"
         />
         <motion.div
-            animate={{ y: [0, -50, 0], x: [0, -30, 0] }}
+            animate={{ y: [0, -30, 0], x: [0, -20, 0] }}
             transition={{ duration: 10, repeat: Infinity }}
-            className="absolute bottom-1/4 right-10 w-48 h-48 bg-brGreen/10 blur-3xl rounded-full"
+            className="absolute bottom-1/4 right-4 md:right-10 w-24 md:w-48 h-24 md:h-48 bg-white/20 blur-2xl md:blur-3xl rounded-full"
         />
     </section>
 );
