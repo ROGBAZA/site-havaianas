@@ -1,0 +1,930 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createClient } from '@supabase/supabase-js';
+import {
+    ShoppingBag, X, Trash2, CreditCard, Lock, ShieldCheck,
+    Smartphone, QrCode, CheckCircle2, ChevronRight, Star,
+    Zap, Menu, ArrowRight, ShoppingBasket, ExternalLink,
+    ChevronLeft, Copy, Info, Mail, User, ShoppingCart
+} from 'lucide-react';
+
+// --- CONFIGURAÇÃO SUPABASE ---
+const SUPABASE_URL = "https://xzsltthkgkoatmchixqo.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6c2x0dGhrZ2tvYXRtY2hpeHFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxNjYwNjUsImV4cCI6MjA3MTc0MjA2NX0.NrXL5BnL9nZ0wrw-4SMhhRQ8leDLMio6rPWKG5Vmc2o";
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const IMG_HERO = "/hero.png";
+const IMG_MODEL_1 = "/hero.png";
+const IMG_MODEL_2 = "/hero.png";
+const IMG_MODEL_3 = "/hero.png";
+const IMG_MODEL_4 = "/hero.png";
+const IMG_MODELS = "/models.png";
+
+const Navbar = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    
+    useEffect(() => {
+        const handle = () => setIsScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', handle);
+        return () => window.removeEventListener('scroll', handle);
+    }, []);
+
+    return (
+        <nav className={`fixed top-0 w-full z-[100] transition-all duration-700 ${isScrolled ? 'bg-black/95 backdrop-blur-2xl py-4 border-b border-white/5 shadow-2xl' : 'bg-transparent py-8'}`}>
+            <div className="container mx-auto px-6 flex justify-between items-center">
+                <motion.div 
+                    initial={{ opacity: 0, x: -100 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+                    className="flex items-center gap-3 cursor-pointer group"
+                >
+                    <motion.div 
+                        initial={{ rotate: -360, scale: 0 }}
+                        animate={{ rotate: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 200 }}
+                        whileHover={{ rotate: 15, scale: 1.2 }}
+                        className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center text-black font-black text-xl shadow-[0_0_30px_rgba(255,207,0,0.5)] group-hover:shadow-[0_0_40px_rgba(255,207,0,0.8)] transition-all"
+                    >H</motion.div>
+                    <motion.span 
+                        initial={{ opacity: 0, y: 50, scale: 0.5 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.7, type: "spring" }}
+                        whileHover={{ scale: 1.05 }}
+                        className="text-2xl font-black text-white tracking-tighter uppercase"
+                    >HAVAIANAS</motion.span>
+                </motion.div>
+
+                <motion.div 
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.9, staggerChildren: 0.1 }}
+                    className="hidden lg:flex items-center gap-8 font-bold text-sm text-gray-300"
+                >
+                    <motion.div className="relative group">
+                        <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-brGreen/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            whileHover={{ scale: 1.2 }}
+                        />
+                        <motion.button 
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.0 }}
+                            whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} 
+                            className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
+                        >
+                            <span className="relative z-10">Havaianas</span>
+                        </motion.button>
+                    </motion.div>
+                    
+                    <motion.div className="relative group">
+                        <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-brGreen/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            whileHover={{ scale: 1.2 }}
+                        />
+                        <motion.button 
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.1 }}
+                            whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById('união').scrollIntoView({ behavior: 'smooth' })} 
+                            className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
+                        >
+                            <span className="relative z-10">Manifesto</span>
+                        </motion.button>
+                    </motion.div>
+                    
+                    <motion.div className="relative group">
+                        <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-brGreen/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            whileHover={{ scale: 1.2 }}
+                        />
+                        <motion.button 
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                            whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
+                        >
+                            <span className="relative z-10">Sustentabilidade</span>
+                        </motion.button>
+                    </motion.div>
+                <motion.button 
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.3 }}
+                    href="https://wa.me/5599982629297" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="relative group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brGreen/20 to-brGreen/10 text-brGreen rounded-full hover:from-brGreen hover:to-brGreen hover:text-white transition-all duration-300 border border-brGreen/30 hover:border-brGreen hover:shadow-lg hover:shadow-brGreen/25 overflow-hidden"
+                    whileHover={{ scale: 1.1, boxShadow: "0 10px 30px rgba(0,151,57,0.4)" }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-brGreen to-brGreen opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "0%" }}
+                        transition={{ duration: 0.3 }}
+                    />
+                    <Smartphone size={16} className="relative z-10 group-hover:rotate-12 transition-transform duration-300" /> 
+                    <span className="font-semibold relative z-10">Contato</span>
+                </motion.button>
+                    <motion.div className="relative group">
+                        <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-secondary to-brGreen rounded-full blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-300"
+                            whileHover={{ scale: 1.3 }}
+                        />
+                        <motion.button 
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.4 }}
+                            onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })}
+                            className="relative p-3 bg-white text-black rounded-full hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 group overflow-hidden"
+                            whileHover={{ scale: 1.2, rotate: 10, boxShadow: "0 15px 35px rgba(255,207,0,0.4)" }}
+                            whileTap={{ scale: 0.85 }}
+                        >
+                            <motion.div 
+                                className="absolute inset-0 bg-gradient-to-r from-secondary to-brGreen opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                initial={{ scale: 0, rotate: 0 }}
+                                whileHover={{ scale: 2, rotate: 180 }}
+                                transition={{ duration: 0.5 }}
+                            />
+                            <ShoppingCart size={20} className="relative z-10 group-hover:rotate-12 transition-transform duration-300 text-white" />
+                        </motion.button>
+                    </motion.div>
+                </motion.div>
+                <motion.button 
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.5 }}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="lg:hidden relative p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <motion.div 
+                        animate={mobileMenuOpen ? { rotate: 45 } : { rotate: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <Menu size={28} className="text-white" />
+                    </motion.div>
+                </motion.button>
+                
+                <AnimatePresence>
+                    {mobileMenuOpen && (
+                        <motion.div 
+                            initial={{ opacity: 0, x: 300, scale: 0.8 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 300, scale: 0.8 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="fixed top-0 right-0 w-80 h-full bg-black/95 backdrop-blur-2xl z-[200] border-l border-white/10 lg:hidden"
+                        >
+                            <div className="p-6">
+                                <motion.button 
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="mb-8 p-2 rounded-full hover:bg-white/10 transition-colors"
+                                    whileHover={{ scale: 1.1, rotate: 90 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    <X size={24} className="text-white" />
+                                </motion.button>
+                                
+                                <div className="flex flex-col gap-4">
+                                    {['Havaianas', 'Manifesto', 'Sustentabilidade'].map((item, index) => (
+                                        <motion.button
+                                            key={item}
+                                            initial={{ opacity: 0, x: 50 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.1 }}
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                if (item === 'Havaianas') {
+                                                    document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+                                                } else if (item === 'Manifesto') {
+                                                    document.getElementById('união').scrollIntoView({ behavior: 'smooth' });
+                                                }
+                                            }}
+                                            className="text-left px-6 py-4 text-white font-bold text-lg rounded-full border border-white/10 hover:bg-white/10 hover:border-secondary transition-all duration-300"
+                                            whileHover={{ scale: 1.05, x: 10 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            {item}
+                                        </motion.button>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </nav>
+    );
+};
+
+const HeroSection = () => (
+    <section id="hero" className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black">
+        {/* Animated White Stripe */}
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+        />
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 5 }}
+            className="absolute top-1/2 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+        />
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 10 }}
+            className="absolute top-3/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+        />
+        
+        {/* Full Screen Advertising Banner */}
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/10 to-transparent flex items-center justify-center overflow-hidden"
+        >
+            <div className="flex items-center gap-8 whitespace-nowrap">
+                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
+                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
+                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
+                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+            </div>
+        </motion.div>
+        
+        {/* Background Rotating Shapes */}
+        <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] border border-white/5 rounded-full pointer-events-none"
+        />
+        <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] border border-secondary/5 rounded-full pointer-events-none"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-50" />
+        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+                <h1 className="text-[14vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] mb-12 italic uppercase">
+                    BRASIL <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-brGreen to-primary">HYPE.</span>
+                </h1>
+                <p className="text-2xl text-gray-500 font-medium max-w-xl leading-relaxed mb-16">A liberdade de um país em cada passo. O ícone global que você já conhece, no futuro que você quer pisar.</p>
+                <button onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} className="group px-14 py-7 bg-secondary text-black font-black rounded-3xl flex items-center gap-4 hover:bg-brGreen hover:text-white transition-all duration-500 shadow-2xl hover:scale-105 active:scale-95 uppercase tracking-widest text-[11px]">
+                    Garanta a Sua <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                </button>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5 }} className="relative group flex justify-center lg:justify-end">
+                <img src={IMG_HERO} className="relative z-10 w-full max-w-[550px] rounded-[60px] md:rounded-[100px] shadow-[0_60px_120px_rgba(0,0,0,0.8)] border border-white/5" />
+            </motion.div>
+        </div>
+    </section>
+);
+
+const CatalogSection = ({ onAddToCart }) => {
+    const items = [
+        { id: 9, name: "Brasil White Logo", price: 59.90, desc: "A legítima alma nacional.", tint: "none", image: IMG_MODEL_1 },
+        { id: 1, name: "Tradicional Azul", price: 39.90, desc: "A clássica global.", tint: "hue-rotate(200deg) saturate(1.8)", image: IMG_MODEL_2 },
+        { id: 3, name: "Top Red Flame", price: 44.90, desc: "Energia urbana.", tint: "hue-rotate(340deg) saturate(2)", image: IMG_MODEL_3 },
+        { id: 11, name: "Brasil Green Mata", price: 59.90, desc: "Força da floresta.", tint: "hue-rotate(130deg) saturate(1.5)", image: IMG_MODEL_4 }
+    ];
+
+    return (
+        <section id="catalogo" className="py-32 md:py-48 bg-[#080808] relative overflow-hidden">
+            {/* Advertising Banner */}
+            <motion.div 
+                animate={{ x: "-100%" }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-brGreen/10 to-transparent flex items-center justify-center overflow-hidden"
+            >
+                <div className="flex items-center gap-8 whitespace-nowrap">
+                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Promoção • 30% OFF</span>
+                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Compre Agora</span>
+                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Envio Imediato</span>
+                    <span className="text-brGreen/50 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Promoção • 30% OFF</span>
+                </div>
+            </motion.div>
+            
+            {/* Animated Background Elements */}
+            <motion.div 
+                animate={{ x: "-100%" }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute top-10 w-[150%] h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent"
+            />
+            <motion.div 
+                animate={{ x: "100%" }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute bottom-20 w-[150%] h-px bg-gradient-to-r from-transparent via-brGreen/20 to-transparent"
+            />
+            
+            <div className="container mx-auto px-6 mb-24 flex flex-col items-center relative z-10">
+                <motion.h2 
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-[12vw] md:text-[7vw] font-black text-white uppercase tracking-tighter text-center leading-none italic"
+                >
+                    HAVAIANAS ATUAIS
+                </motion.h2>
+            </div>
+            <div className="container mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                {items.map(item => (
+                    <motion.div key={item.id} whileHover={{ y: -15 }} className="group bg-white/[0.02] rounded-[70px] p-8 border border-white/5 transition-all duration-700 flex flex-col">
+                        <div className="relative aspect-square bg-white/[0.03] rounded-[50px] overflow-hidden flex items-center justify-center p-12 group-hover:bg-white/[0.06] transition-colors">
+                            <img src={item.image} style={{ filter: item.tint }} className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-[2000ms]" />
+                        </div>
+                        <div className="mt-8 flex-grow ml-4">
+                            <h4 className="text-2xl font-black text-white italic uppercase tracking-tighter group-hover:text-secondary transition-colors">{item.name}</h4>
+                            <p className="text-gray-500 text-[10px] mt-2 font-black uppercase tracking-[0.2em]">{item.desc}</p>
+                        </div>
+                        <div className="mt-10 flex justify-between items-center bg-black/40 p-5 rounded-[40px] border border-white/5 group-hover:border-secondary/20 transition-all">
+                            <span className="text-white font-black text-2xl tracking-tighter italic ml-4">R$ {item.price.toFixed(2).replace('.', ',')}</span>
+                            <button onClick={() => onAddToCart(item)} className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center hover:bg-secondary hover:scale-110 active:scale-90 transition-all shadow-xl">
+                                <ShoppingBag size={28} />
+                            </button>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const ManifestoSection = () => (
+    <section id="união" className="py-40 md:py-64 bg-[#fff] text-black relative flex flex-col items-center overflow-hidden border-y-[20px] md:border-y-[40px] border-black">
+        {/* Advertising Banner */}
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-black/5 to-transparent flex items-center justify-center overflow-hidden"
+        >
+            <div className="flex items-center gap-8 whitespace-nowrap">
+                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
+                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Feito no Brasil</span>
+                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Tradição desde 1962</span>
+                <span className="text-black/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                <span className="text-black/20 font-black text-xl tracking-[0.3em] uppercase">Sustentabilidade • Qualidade</span>
+            </div>
+        </motion.div>
+        
+        {/* Animated Background Lines */}
+        <motion.div 
+            animate={{ x: "-100%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/3 w-[200%] h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"
+        />
+        <motion.div 
+            animate={{ x: "100%" }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute top-2/3 w-[200%] h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"
+        />
+        
+        <div className="container mx-auto px-6 flex flex-col items-center text-center mt-20 relative z-10">
+            <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                className="mb-16"
+            >
+                <Star size={120} className="text-secondary" fill="currentColor" />
+            </motion.div>
+
+            <div className="relative pt-24 mb-10">
+                <h2 className="text-[12vw] md:text-[10rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic">
+                    A BANDEIRA <br />
+                    <span className="relative inline-block px-4">
+                        É DE TODOS
+                        <div className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-4 md:h-12 bg-secondary -z-10 skew-x-[-15deg] origin-left" />
+                    </span>
+                </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-24 items-center mt-40 text-left max-w-7xl">
+                <div className="space-y-12">
+                    <h3 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] border-l-[16px] border-brGreen pl-10">O passo que <br /> une toda uma <span className="text-brGreen">Nação</span>.</h3>
+                    <p className="text-2xl text-gray-500 font-bold leading-relaxed">Havaianas não escolhe lado. Onde houver sol, areia ou asfalto, estaremos lá. Conforto é um direito, brasilidade é nosso DNA.</p>
+                </div>
+                <motion.img whileHover={{ rotate: 0 }} src={IMG_MODELS} className="rounded-[80px] shadow-[0_50px_100px_rgba(0,0,0,0.3)] border-[20px] border-white rotate-2 w-full transition-transform duration-1000" />
+            </div>
+        </div>
+
+        {/* Floating Accents Re-added */}
+        <motion.div
+            animate={{ y: [0, 50, 0], x: [0, 30, 0] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-1/2 left-10 w-32 h-32 bg-secondary/10 blur-3xl rounded-full"
+        />
+        <motion.div
+            animate={{ y: [0, -50, 0], x: [0, -30, 0] }}
+            transition={{ duration: 10, repeat: Infinity }}
+            className="absolute bottom-1/4 right-10 w-48 h-48 bg-brGreen/10 blur-3xl rounded-full"
+        />
+    </section>
+);
+
+const CartModal = ({ isOpen, items, onClose, onRemove }) => {
+    const [step, setStep] = useState(1); // 1: Cart, 2: Lead Info, 3: Payment, 4: Success
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [formData, setFormData] = useState({ name: '', email: '' });
+    const total = items.reduce((acc, i) => acc + i.price, 0);
+
+    const handleNext = async () => {
+        if (step === 1) { setStep(2); return; }
+        if (step === 2) {
+            if (!formData.name || !formData.email) return alert("Por favor, preencha seus dados.");
+            setStep(3);
+            return;
+        }
+
+        setIsProcessing(true);
+        const orderId = `HAV-2030-${Math.floor(Math.random() * 100000)}`;
+
+        // SAVE TO SUPABASE
+        const { error } = await supabase.from('havaianas_orders').insert([
+            {
+                customer_name: formData.name,
+                customer_email: formData.email,
+                total_amount: total,
+                items: items,
+                order_id: orderId
+            }
+        ]);
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        if (error) {
+            alert("Erro ao processar pedido. Tente novamente.");
+            setIsProcessing(false);
+        } else {
+            setStep(4);
+            setIsProcessing(false);
+        }
+    };
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <div className="fixed inset-0 z-[1000] flex justify-end px-4">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-black/95 backdrop-blur-3xl" />
+                    <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="relative w-full md:w-[600px] h-screen bg-[#0a0a0a] border-l border-white/5 p-8 md:p-14 flex flex-col shadow-2xl">
+
+                        {/* Header Checkout */}
+                        <div className="flex justify-between items-center mb-12">
+                            {step > 1 && step < 4 && (
+                                <button onClick={() => setStep(step - 1)} className="text-gray-500 hover:text-white flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-all">
+                                    <ChevronLeft size={20} /> VOLTAR
+                                </button>
+                            )}
+                            <h2 className="text-3xl md:text-4xl font-black text-white italic tracking-tighter uppercase ml-auto">
+                                {step === 1 ? 'MEU SQUAD' : step === 2 ? 'IDENTIFICAÇÃO' : step === 3 ? 'PGTO' : 'SUCESSO'}
+                            </h2>
+                            {step < 4 && <button onClick={onClose} className="text-white hover:text-secondary ml-8 transition-colors"><X size={36} /></button>}
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="flex-grow overflow-y-auto space-y-8 pr-2 custom-scrollbar pb-10">
+                            {step === 1 ? (
+                                <>
+                                    {items.length === 0 ? (
+                                        <div className="h-full flex flex-col items-center justify-center opacity-10"><ShoppingBasket size={120} /><p className="text-2xl font-black mt-10">VAZIO.</p></div>
+                                    ) : (
+                                        items.map((i, idx) => (
+                                            <div key={idx} className="flex gap-6 p-6 md:p-8 bg-white/[0.03] rounded-[40px] border border-white/5 items-center hover:bg-white/[0.06] transition-all">
+                                                <div className="w-20 h-20 rounded-[24px] overflow-hidden bg-black/50 border border-white/10 shrink-0"><img src={IMG_HERO} style={{ filter: i.tint }} className="w-full h-full object-cover" /></div>
+                                                <div className="flex-grow">
+                                                    <h4 className="text-lg font-black text-white uppercase italic tracking-tighter leading-tight">{i.name}</h4>
+                                                    <p className="text-secondary font-black text-lg mt-1 tracking-tighter">R$ {i.price.toFixed(2).replace('.', ',')}</p>
+                                                </div>
+                                                <button onClick={() => onRemove(idx)} className="text-gray-700 hover:text-accent p-2"><Trash2 size={24} /></button>
+                                            </div>
+                                        ))
+                                    )}
+                                </>
+                            ) : step === 2 ? (
+                                <div className="space-y-8 pt-10">
+                                    <div className="space-y-4">
+                                        <label className="text-gray-500 font-black text-[10px] uppercase tracking-widest block ml-6">Nome Completo</label>
+                                        <div className="relative">
+                                            <User className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                                            <input
+                                                type="text"
+                                                placeholder="Como você quer ser chamado?"
+                                                className="w-full bg-white/5 border border-white/10 p-6 pl-20 rounded-[30px] text-white font-bold focus:border-secondary outline-none transition-all"
+                                                value={formData.name}
+                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <label className="text-gray-500 font-black text-[10px] uppercase tracking-widest block ml-6">E-mail para o Recibo</label>
+                                        <div className="relative">
+                                            <Mail className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                                            <input
+                                                type="email"
+                                                placeholder="seu@email.com"
+                                                className="w-full bg-white/5 border border-white/10 p-6 pl-20 rounded-[30px] text-white font-bold focus:border-secondary outline-none transition-all"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            />
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-600 text-[10px] font-bold text-center italic px-10">Seus dados serão usados apenas para confirmação do seu Drop Havaianas 2030.</p>
+                                </div>
+                            ) : step === 3 ? (
+                                <div className="space-y-12">
+                                    <div className="bg-white/5 p-10 rounded-[60px] border border-white/10 text-center relative overflow-hidden group">
+                                        <div className="flex items-center justify-center gap-3 text-secondary font-black text-[10px] uppercase tracking-[0.5em] mb-10">PAGAMENTO VIA PIX</div>
+                                        <div className="flex justify-center mb-10">
+                                            <div className="bg-white p-6 rounded-[40px] w-[260px] h-[260px] flex items-center justify-center shadow-2xl relative group-hover:scale-105 transition-transform duration-700">
+                                                <QrCode size={210} className="text-black" />
+                                                <div className="absolute inset-0 bg-secondary/5 pointer-events-none rounded-[40px]" />
+                                            </div>
+                                        </div>
+                                        <button className="flex items-center justify-center gap-3 w-full py-5 border-2 border-white/10 rounded-3xl text-white font-black text-[11px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                                            <Copy size={20} /> COPIAR CÓDIGO PIX
+                                        </button>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="p-8 bg-white/5 rounded-[40px] border border-white/10 flex flex-col items-center gap-4 hover:bg-white hover:text-black transition-all group cursor-pointer shadow-xl">
+                                            <CreditCard size={32} className="text-white group-hover:text-black" />
+                                            <span className="font-black text-[11px] uppercase tracking-widest">CARTÃO</span>
+                                        </div>
+                                        <div className="p-8 bg-white/5 rounded-[40px] border border-white/10 flex flex-col items-center gap-4 hover:bg-white hover:text-black transition-all group cursor-pointer shadow-xl">
+                                            <Smartphone size={32} className="text-white group-hover:text-black" />
+                                            <span className="font-black text-[11px] uppercase tracking-widest">APPLE PAY</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="h-full flex flex-col items-center justify-center text-center px-4">
+                                    <div className="w-32 h-32 bg-brGreen rounded-full flex items-center justify-center mb-12 shadow-[0_0_50px_rgba(0,151,57,0.5)]">
+                                        <CheckCircle2 size={64} className="text-white" />
+                                    </div>
+                                    <h3 className="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter mb-6">PAGAMENTO <br />REALIZADO!</h3>
+                                    <p className="text-gray-400 text-lg mb-12 italic">Seu drop foi garantido, {formData.name.split(' ')[0]}. <br />Enviamos o recibo para {formData.email}.</p>
+                                    <div className="bg-white/5 p-8 rounded-[40px] w-full border border-white/10">
+                                        <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Pedido ID</p>
+                                        <p className="text-white font-black text-2xl">#HAV-2030-{Math.floor(Math.random() * 100000)}</p>
+                                    </div>
+                                    <button onClick={onClose} className="mt-12 text-secondary font-black text-[10px] uppercase tracking-[0.4em] hover:text-white transition-colors">Voltar para a Coleção</button>
+                                </motion.div>
+                            )}
+                        </div>
+
+                        {/* Order Summary & Finalize */}
+                        {items.length > 0 && step < 4 && (
+                            <div className="mt-auto pt-10 border-t border-white/10 space-y-8">
+                                <div className="flex justify-between items-end bg-white/5 p-8 rounded-[40px] border border-white/5">
+                                    <div className="space-y-2">
+                                        <p className="text-gray-500 font-black text-[9px] uppercase tracking-[0.4em]">TOTAL DO DROP</p>
+                                        <div className="flex items-center gap-2 text-brGreen font-black text-[10px] uppercase tracking-[0.2em]">
+                                            <ShieldCheck size={16} /> STRIPE SECURE
+                                        </div>
+                                    </div>
+                                    <p className="text-5xl md:text-6xl font-black text-white tracking-tighter italic">R$ {total.toFixed(2).replace('.', ',')}</p>
+                                </div>
+
+                                <button
+                                    onClick={handleNext}
+                                    disabled={isProcessing}
+                                    className="w-full py-8 bg-brGreen text-white font-black rounded-[40px] flex items-center justify-center gap-8 hover:bg-secondary hover:text-black transition-all shadow-[0_40px_100px_rgba(0,151,57,0.3)] disabled:opacity-50 group relative overflow-hidden"
+                                >
+                                    {isProcessing ? (
+                                        <div className="animate-spin rounded-full h-8 w-8 border-4 border-white border-t-transparent" />
+                                    ) : (
+                                        <>
+                                            <Lock size={24} />
+                                            <span className="text-xl uppercase tracking-[0.3em]">
+                                                {step === 1 ? 'PROSSEGUIR' : step === 2 ? 'CONFIRMAR DADOS' : 'FINALIZAR AGORA'}
+                                            </span>
+                                        </>
+                                    )}
+                                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[1.2s] ease-in-out" />
+                                </button>
+                            </div>
+                        )}
+                    </motion.div>
+                </div>
+            )}
+        </AnimatePresence>
+    );
+};
+
+const ContactSection = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        
+        const whatsappMessage = `*NOVO CONTATO HAVAIANAS*\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Mensagem:* ${formData.message}`;
+        const whatsappUrl = `https://wa.me/55679986547?text=${encodeURIComponent(whatsappMessage)}`;
+        
+        window.open(whatsappUrl, '_blank');
+        
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setSubmitted(true);
+            setFormData({ name: '', email: '', phone: '', message: '' });
+            setTimeout(() => setSubmitted(false), 5000);
+        }, 1000);
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    return (
+        <section className="py-32 md:py-48 bg-gradient-to-b from-[#080808] to-black relative overflow-hidden">
+            {/* Advertising Banner */}
+            <motion.div 
+                animate={{ x: "-100%" }}
+                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-secondary/8 to-transparent flex items-center justify-center overflow-hidden"
+            >
+                <div className="flex items-center gap-8 whitespace-nowrap">
+                    <span className="text-secondary/20 font-black text-xl tracking-[0.3em] uppercase">Contato Direto • WhatsApp</span>
+                    <span className="text-secondary/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-secondary/20 font-black text-xl tracking-[0.3em] uppercase">Resposta Rápida</span>
+                    <span className="text-secondary/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-secondary/20 font-black text-xl tracking-[0.3em] uppercase">Atendimento 24/7</span>
+                    <span className="text-secondary/30 font-black text-xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-secondary/20 font-black text-xl tracking-[0.3em] uppercase">Contato Direto • WhatsApp</span>
+                </div>
+            </motion.div>
+            
+            {/* Animated Background Elements */}
+            <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute top-20 left-10 w-32 h-32 border border-secondary/20 rounded-full"
+            />
+            <motion.div 
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute bottom-20 right-10 w-24 h-24 border border-brGreen/20 rounded-full"
+            />
+            
+            <div className="container mx-auto px-6 relative z-10">
+                <motion.div 
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-[12vw] md:text-[6vw] font-black text-white uppercase tracking-tighter text-center leading-none italic mb-8">
+                        ENTRE EM<br />CONTATO
+                    </h2>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                        Fale diretamente com nossos especialistas pelo WhatsApp. Retornamos em até 5 minutos.
+                    </p>
+                </motion.div>
+
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="max-w-4xl mx-auto"
+                >
+                    <form onSubmit={handleSubmit} className="bg-white/[0.02] backdrop-blur-2xl rounded-[40px] border border-white/10 p-12 space-y-8">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <motion.div 
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                viewport={{ once: true }}
+                                className="space-y-2"
+                            >
+                                <label className="text-white/60 text-sm font-bold uppercase tracking-wider">Nome Completo</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:border-secondary focus:outline-none transition-all duration-300"
+                                    placeholder="Seu nome"
+                                />
+                            </motion.div>
+                            
+                            <motion.div 
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.4 }}
+                                viewport={{ once: true }}
+                                className="space-y-2"
+                            >
+                                <label className="text-white/60 text-sm font-bold uppercase tracking-wider">E-mail</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:border-secondary focus:outline-none transition-all duration-300"
+                                    placeholder="seu@email.com"
+                                />
+                            </motion.div>
+                        </div>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            viewport={{ once: true }}
+                            className="space-y-2"
+                        >
+                            <label className="text-white/60 text-sm font-bold uppercase tracking-wider">Telefone</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:border-secondary focus:outline-none transition-all duration-300"
+                                placeholder="(67) 98865-4747"
+                            />
+                        </motion.div>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            viewport={{ once: true }}
+                            className="space-y-2"
+                        >
+                            <label className="text-white/60 text-sm font-bold uppercase tracking-wider">Mensagem</label>
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                                rows={4}
+                                className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:border-secondary focus:outline-none transition-all duration-300 resize-none"
+                                placeholder="Como podemos ajudar?"
+                            />
+                        </motion.div>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7 }}
+                            viewport={{ once: true }}
+                            className="text-center"
+                        >
+                            <motion.button
+                                type="submit"
+                                disabled={isSubmitting}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="relative px-12 py-6 bg-gradient-to-r from-secondary to-brGreen text-black font-black rounded-full flex items-center gap-4 hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+                            >
+                                <motion.div 
+                                    className="absolute inset-0 bg-gradient-to-r from-brGreen to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    initial={{ x: "-100%" }}
+                                    whileHover={{ x: "0%" }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                                {isSubmitting ? (
+                                    <>
+                                        <motion.div 
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                            className="w-6 h-6 border-2 border-current border-t-transparent rounded-full"
+                                        />
+                                        <span className="relative z-10">Enviando...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Smartphone size={20} className="relative z-10" />
+                                        <span className="relative z-10 uppercase tracking-widest text-sm">Enviar via WhatsApp</span>
+                                    </>
+                                )}
+                            </motion.button>
+                            
+                            {submitted && (
+                                <motion.p 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mt-4 text-brGreen font-bold"
+                                >
+                                    Mensagem enviada! Aguarde nosso contato.
+                                </motion.p>
+                            )}
+                        </motion.div>
+                    </form>
+                    
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        viewport={{ once: true }}
+                        className="mt-12 text-center"
+                    >
+                        <p className="text-white/40 text-sm">
+                            Ou chame diretamente no WhatsApp: 
+                            <a 
+                                href="https://wa.me/55679986547" 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="text-brGreen font-bold hover:text-secondary transition-colors ml-2"
+                            >
+                                (67) 98865-4747
+                            </a>
+                        </p>
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
+function App() {
+    const [cart, setCart] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [notif, setNotif] = useState(false);
+
+    const add = (p) => { setCart([...cart, p]); setNotif(true); setTimeout(() => setNotif(false), 3000); };
+    const remove = (idx) => { const n = [...cart]; n.splice(idx, 1); setCart(n); };
+
+    return (
+        <div className="bg-black text-white font-sans antialiased overflow-x-hidden selection:bg-secondary selection:text-black">
+            <Navbar />
+
+            <HeroSection />
+            <CatalogSection onAddToCart={add} />
+            <ManifestoSection />
+            <ContactSection />
+
+            <footer className="py-48 bg-black flex flex-col items-center relative border-t border-white/5">
+                <h3 className="text-[18vw] font-black italic opacity-5 tracking-tighter leading-none select-none uppercase">HAVAIANAS</h3>
+                <div className="mt-16 flex flex-col md:flex-row gap-16 text-center md:text-left items-center opacity-40">
+                    <div className="space-y-4">
+                        <p className="text-white font-black text-[9px] tracking-widest uppercase">Atendimento</p>
+                        <p className="text-secondary font-black text-xl tracking-tighter italic">0800 70 70 567</p>
+                    </div>
+                    <div className="w-12 h-[1px] bg-white/20 hidden md:block" />
+                    <div className="space-y-4">
+                        <p className="text-white font-black text-[9px] tracking-widest uppercase">Drops Globais</p>
+                        <p className="text-white font-bold text-lg tracking-tighter italic">SP | NY | LDN | PAR | TKY</p>
+                    </div>
+                </div>
+                <p className="mt-32 text-[8px] font-black uppercase tracking-[0.8em] text-gray-800">ALPARGATAS S.A. | BRASIL 2030</p>
+            </footer>
+
+            <AnimatePresence>
+                {notif && (
+                    <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }} className="fixed bottom-32 left-10 z-[1200] bg-secondary text-black px-12 py-7 rounded-[40px] font-black shadow-[0_40px_80px_rgba(255,207,0,0.4)] border-4 border-black flex items-center gap-6 text-sm uppercase tracking-widest">
+                        <Zap size={28} fill="currentColor" /> ADICIONADO AO SQUAD!
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Cart Button */}
+            <motion.button
+                whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+                onClick={() => setIsOpen(true)}
+                className="fixed bottom-10 right-10 z-[900] bg-secondary text-black p-4 rounded-full shadow-2xl border-4 border-black flex items-center justify-center"
+            >
+                <ShoppingCart size={24} />
+            </motion.button>
+
+            <CartModal isOpen={isOpen} items={cart} onClose={() => setIsOpen(false)} onRemove={remove} />
+
+            <style>{`
+                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #FFCF00; border-radius: 40px; }
+            `}</style>
+        </div>
+    );
+}
+
+export default App;
