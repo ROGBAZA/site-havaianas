@@ -394,14 +394,18 @@ const ManifestoSection = () => (
             </motion.div>
 
             <div className="relative pt-12 md:pt-24 mb-8 md:mb-10">
-                <h2 className="text-[8vw] md:text-[6rem] lg:text-[9rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic text-black">
-                    A BANDEIRA <br />
-                    <span className="relative inline-block px-2 md:px-4">
-                        É DE TODOS <br />
-                        NÓS
-                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-2 md:h-12 bg-yellow-400 -z-10 skew-x-[-15deg] origin-left" />
+                <motion.h2 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-[6vw] md:text-[4rem] lg:text-[5rem] font-black leading-[1.1] tracking-tight italic text-black relative"
+                >
+                    <span className="relative inline-block">
+                        A BANDEIRA É DE TODOS NÓS
+                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-transparent blur-xl -z-10" />
+                        <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-400/50 to-transparent" />
                     </span>
-                </h2>
+                </motion.h2>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mt-20 md:mt-40 text-left max-w-6xl lg:max-w-7xl w-full">
