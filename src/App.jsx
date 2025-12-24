@@ -354,7 +354,15 @@ const CatalogSection = ({ onAddToCart }) => {
 };
 
 const ManifestoSection = () => (
-    <section id="união" className="py-40 md:py-64 bg-[#fff] text-black relative flex flex-col items-center overflow-hidden border-y-[20px] md:border-y-[40px] border-black">
+    <section id="união" className="py-40 md:py-64 relative flex flex-col items-center overflow-hidden border-y-[20px] md:border-y-[40px] border-black" 
+           style={{
+              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMDBBODU3Ii8+CjxwYXRoIGQ9Ik0wIDQwMEg0MDBWODAwSDBWNDAwWiIgZmlsbD0iI0ZGRkRGMCIvPgo8cGF0aCBkPSJNNDAwIDQwMEgxMjAwVjgwMEg0MDBWNDAwWiIgZmlsbD0iIzAwOUIzOSIvPgo8cGF0aCBkPSJNMCAwSDQwMFY0MDBIMFYwWiIgZmlsbD0iIzAwOUIzOSIvPgo8cGF0aCBkPSJNNDAwIDBIMTIwMFY0MDBINDAwVjBaIiBmaWxsPSIjMDA5QzM5Ii8+CjxwYXRoIGQ9Ik0wIDQwMEgxMjAwVjgwMEgwVjQwMFoiIGZpbGw9IiMwMDlDMzkiLz4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iNDAwIiByPSI4MCIgZmlsbD0iI0ZGRkRGMCIvPgo8L3N2Zz4K')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundBlend: 'overlay'
+           }}>
+        {/* Overlay para garantir visibilidade */}
+        <div className="absolute inset-0 bg-white/80" />
         {/* Advertising Banner */}
         <motion.div 
             animate={{ x: "-100%" }}
@@ -394,10 +402,11 @@ const ManifestoSection = () => (
             </motion.div>
 
             <div className="relative pt-24 mb-10">
-                <h2 className="text-[12vw] md:text-[10rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic">
+                <h2 className="text-[10vw] md:text-[8rem] font-black uppercase leading-[1.3] md:leading-[1.2] tracking-[-0.08em] italic">
                     A BANDEIRA <br />
                     <span className="relative inline-block px-4">
-                        É DE TODOS
+                        É DE TODOS <br />
+                        NÓS
                         <div className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-4 md:h-12 bg-secondary -z-10 skew-x-[-15deg] origin-left" />
                     </span>
                 </h2>
