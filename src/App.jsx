@@ -7,6 +7,7 @@ import {
     Zap, Menu, ArrowRight, ShoppingBasket, ExternalLink,
     ChevronLeft, Copy, Info, Mail, User, ShoppingCart
 } from 'lucide-react';
+import SustentabilidadeSection from './SustentabilidadeSection.jsx';
 
 // --- CONFIGURAÇÃO SUPABASE ---
 const SUPABASE_URL = "https://xzsltthkgkoatmchixqo.supabase.co";
@@ -109,6 +110,7 @@ const Navbar = () => {
                             transition={{ delay: 1.2 }}
                             whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById('sustentabilidade').scrollIntoView({ behavior: 'smooth' })}
                             className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
                         >
                             <span className="relative z-10">Sustentabilidade</span>
@@ -866,6 +868,7 @@ function App() {
             <HeroSection />
             <CatalogSection onAddToCart={add} />
             <ManifestoSection />
+            <SustentabilidadeSection />
             <ContactSection />
 
             <footer className="py-48 bg-black flex flex-col items-center relative border-t border-white/5">
