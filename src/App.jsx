@@ -229,7 +229,7 @@ const Navbar = () => {
 };
 
 const HeroSection = () => (
-    <section id="hero" className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black">
+    <section id="hero" className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black pt-20 lg:pt-0">
         {/* Animated White Stripe */}
         <motion.div 
             animate={{ x: "-100%" }}
@@ -262,11 +262,11 @@ const HeroSection = () => (
         <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-50" />
         <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                <h1 className="text-[14vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] mb-12 italic uppercase">
+                <h1 className="text-[8vw] sm:text-[10vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] mb-12 italic uppercase">
                     BRASIL <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-brGreen to-primary">HYPE.</span>
                 </h1>
-                <p className="text-2xl text-gray-500 font-medium max-w-xl leading-relaxed mb-16">A liberdade de um país em cada passo. O ícone global que você já conhece, no futuro que você quer pisar.</p>
-                <button onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} className="group px-14 py-7 bg-secondary text-black font-black rounded-3xl flex items-center gap-4 hover:bg-brGreen hover:text-white transition-all duration-500 shadow-2xl hover:scale-105 active:scale-95 uppercase tracking-widest text-[11px]">
+                <p className="text-lg sm:text-xl md:text-2xl text-gray-500 font-medium max-w-xl leading-relaxed mb-12 sm:mb-16">A liberdade de um país em cada passo. O ícone global que você já conhece, no futuro que você quer pisar.</p>
+                <button onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} className="group px-8 sm:px-12 py-4 sm:py-6 bg-secondary text-black font-black rounded-2xl sm:rounded-3xl flex items-center gap-3 sm:gap-4 hover:bg-brGreen hover:text-white transition-all duration-500 shadow-2xl hover:scale-105 active:scale-95 uppercase tracking-widest text-[9px] sm:text-[11px]">
                     Garanta a Sua <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                 </button>
             </motion.div>
