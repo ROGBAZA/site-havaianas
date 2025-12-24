@@ -1,0 +1,36 @@
+name: Auto Commit em Português
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Build do projeto
+      run: npm run build
+    
+    - name: Auto commit se houver mudanças
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff --staged --quiet || git commit -m "build: atualizar build automático $(date '+%d/%m/%Y %H:%M:%S')"
+    
+    - name: Push automático
+      run: git push
