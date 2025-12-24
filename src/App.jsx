@@ -232,37 +232,18 @@ const HeroSection = () => (
         <motion.div 
             animate={{ x: "-100%" }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+            className="absolute top-1/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30 z-10"
         />
         <motion.div 
             animate={{ x: "-100%" }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 5 }}
-            className="absolute top-1/2 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            className="absolute top-1/2 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"
         />
         <motion.div 
             animate={{ x: "-100%" }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 10 }}
-            className="absolute top-3/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+            className="absolute top-3/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20 z-10"
         />
-        
-        {/* Full Screen Advertising Banner */}
-        <motion.div 
-            animate={{ x: "-100%" }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/10 to-transparent flex items-center justify-center overflow-hidden"
-        >
-            <div className="flex items-center gap-8 whitespace-nowrap">
-                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
-                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
-                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
-                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
-                <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
-            </div>
-        </motion.div>
         
         {/* Background Rotating Shapes */}
         <motion.div
@@ -304,11 +285,30 @@ const CatalogSection = ({ onAddToCart }) => {
 
     return (
         <section id="catalogo" className="py-32 md:py-48 bg-[#080808] relative overflow-hidden">
+            {/* Full Screen Advertising Banner - Moved Here */}
+            <motion.div 
+                animate={{ x: "-100%" }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/10 to-transparent flex items-center justify-center overflow-hidden z-20"
+            >
+                <div className="flex items-center gap-8 whitespace-nowrap">
+                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
+                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
+                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
+                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
+                    <span className="text-white/40 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                </div>
+            </motion.div>
+            
             {/* Advertising Banner */}
             <motion.div 
                 animate={{ x: "-100%" }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 w-[300%] h-16 bg-gradient-to-r from-transparent via-brGreen/10 to-transparent flex items-center justify-center overflow-hidden"
+                className="absolute top-24 w-[300%] h-16 bg-gradient-to-r from-transparent via-brGreen/10 to-transparent flex items-center justify-center overflow-hidden z-20"
             >
                 <div className="flex items-center gap-8 whitespace-nowrap">
                     <span className="text-brGreen/30 font-black text-xl tracking-[0.3em] uppercase">Promoção • 30% OFF</span>
@@ -333,7 +333,7 @@ const CatalogSection = ({ onAddToCart }) => {
                 className="absolute bottom-20 w-[150%] h-px bg-gradient-to-r from-transparent via-brGreen/20 to-transparent"
             />
             
-            <div className="container mx-auto px-6 mb-24 flex flex-col items-center relative z-10">
+            <div className="container mx-auto px-6 mb-24 flex flex-col items-center relative z-30">
                 <motion.h2 
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -644,7 +644,7 @@ const ContactSection = () => {
         setIsSubmitting(true);
         
         const whatsappMessage = `*NOVO CONTATO HAVAIANAS*\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Mensagem:* ${formData.message}`;
-        const whatsappUrl = `https://wa.me/55679986547?text=${encodeURIComponent(whatsappMessage)}`;
+        const whatsappUrl = `https://wa.me/5567998186597?text=${encodeURIComponent(whatsappMessage)}`;
         
         window.open(whatsappUrl, '_blank');
         
@@ -770,7 +770,7 @@ const ContactSection = () => {
                                 onChange={handleChange}
                                 required
                                 className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:border-secondary focus:outline-none transition-all duration-300"
-                                placeholder="(67) 98865-4747"
+                                placeholder="(67) 99818-6597"
                             />
                         </motion.div>
                         
@@ -852,12 +852,12 @@ const ContactSection = () => {
                         <p className="text-white/40 text-sm">
                             Ou chame diretamente no WhatsApp: 
                             <a 
-                                href="https://wa.me/55679986547" 
+                                href="https://wa.me/5567998186597" 
                                 target="_blank" 
                                 rel="noreferrer"
                                 className="text-brGreen font-bold hover:text-secondary transition-colors ml-2"
                             >
-                                (67) 98865-4747
+                                (67) 99818-6597
                             </a>
                         </p>
                     </motion.div>
