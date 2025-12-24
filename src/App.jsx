@@ -5,7 +5,7 @@ import {
     ShoppingBag, X, Trash2, CreditCard, Lock, ShieldCheck,
     Smartphone, QrCode, CheckCircle2, ChevronRight, Star,
     Zap, Menu, ArrowRight, ShoppingBasket, ExternalLink,
-    ChevronLeft, Copy, Info, Mail, User, ShoppingCart
+    ChevronLeft, Copy, Info, Mail, User, ShoppingCart, Calendar
 } from 'lucide-react';
 import SustentabilidadeSection from './SustentabilidadeSection.jsx';
 
@@ -432,41 +432,33 @@ const ManifestoSection = () => (
 );
 
 const CartModal = ({ isOpen, items, onClose, onRemove }) => {
-    const [step, setStep] = useState(1); // 1: Cart, 2: Lead Info, 3: Payment, 4: Success
+    const [step, setStep] = useState(1);
     const [isProcessing, setIsProcessing] = useState(false);
-    const [formData, setFormData] = useState({ name: '', email: '' });
+    const [formData, setFormData] = useState({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        birthdate: '' 
+    });
     const total = items.reduce((acc, i) => acc + i.price, 0);
 
     const handleNext = async () => {
         if (step === 1) { setStep(2); return; }
         if (step === 2) {
-            if (!formData.name || !formData.email) return alert("Por favor, preencha seus dados.");
-            setStep(3);
-            return;
-        }
-
-        setIsProcessing(true);
-        const orderId = `HAV-2030-${Math.floor(Math.random() * 100000)}`;
-
-        // SAVE TO SUPABASE
-        const { error } = await supabase.from('havaianas_orders').insert([
-            {
-                customer_name: formData.name,
-                customer_email: formData.email,
-                total_amount: total,
-                items: items,
-                order_id: orderId
+            if (!formData.name || !formData.email || !formData.phone || !formData.birthdate) {
+                alert("Por favor, preencha todos os dados.");
+                return;
             }
-        ]);
-
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        if (error) {
-            alert("Erro ao processar pedido. Tente novamente.");
-            setIsProcessing(false);
-        } else {
-            setStep(4);
-            setIsProcessing(false);
+            
+            // Redirecionar para WhatsApp com os dados
+            const message = `*NOVO PEDIDO HAVAIANAS*\n\n*Dados do Cliente:*\n*Nome:* ${formData.name}\n*E-mail:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Data de Nascimento:* ${formData.birthdate}\n\n*Itens do Pedido:*\n${items.map(item => `• ${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join('\n')}\n\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n*Pedido ID:* HAV-2030-${Math.floor(Math.random() * 100000)}`;
+            
+            const whatsappUrl = `https://wa.me/5599982629297?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Fechar modal após redirecionar
+            setTimeout(() => onClose(), 1000);
+            return;
         }
     };
 
@@ -510,34 +502,63 @@ const CartModal = ({ isOpen, items, onClose, onRemove }) => {
                                     )}
                                 </>
                             ) : step === 2 ? (
-                                <div className="space-y-8 pt-10">
-                                    <div className="space-y-4">
-                                        <label className="text-gray-500 font-black text-[10px] uppercase tracking-widest block ml-6">Nome Completo</label>
+                                <div className="space-y-6 pt-4">
+                                    <div className="space-y-3">
+                                        <label className="text-gray-500 font-black text-[9px] uppercase tracking-widest block ml-4">Nome Completo</label>
                                         <div className="relative">
-                                            <User className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                                            <User className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                             <input
                                                 type="text"
-                                                placeholder="Como você quer ser chamado?"
-                                                className="w-full bg-white/5 border border-white/10 p-6 pl-20 rounded-[30px] text-white font-bold focus:border-secondary outline-none transition-all"
+                                                placeholder="Seu nome completo"
+                                                className="w-full bg-white/5 border border-white/10 p-4 pl-16 rounded-[20px] text-white font-bold focus:border-secondary outline-none transition-all text-sm"
                                                 value={formData.name}
                                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                             />
                                         </div>
                                     </div>
-                                    <div className="space-y-4">
-                                        <label className="text-gray-500 font-black text-[10px] uppercase tracking-widest block ml-6">E-mail para o Recibo</label>
+                                    
+                                    <div className="space-y-3">
+                                        <label className="text-gray-500 font-black text-[9px] uppercase tracking-widest block ml-4">E-mail</label>
                                         <div className="relative">
-                                            <Mail className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                                            <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                             <input
                                                 type="email"
                                                 placeholder="seu@email.com"
-                                                className="w-full bg-white/5 border border-white/10 p-6 pl-20 rounded-[30px] text-white font-bold focus:border-secondary outline-none transition-all"
+                                                className="w-full bg-white/5 border border-white/10 p-4 pl-16 rounded-[20px] text-white font-bold focus:border-secondary outline-none transition-all text-sm"
                                                 value={formData.email}
                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                             />
                                         </div>
                                     </div>
-                                    <p className="text-gray-600 text-[10px] font-bold text-center italic px-10">Seus dados serão usados apenas para confirmação do seu Drop Havaianas 2030.</p>
+                                    
+                                    <div className="space-y-3">
+                                        <label className="text-gray-500 font-black text-[9px] uppercase tracking-widest block ml-4">Telefone</label>
+                                        <div className="relative">
+                                            <Smartphone className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                                            <input
+                                                type="tel"
+                                                placeholder="(00) 00000-0000"
+                                                className="w-full bg-white/5 border border-white/10 p-4 pl-16 rounded-[20px] text-white font-bold focus:border-secondary outline-none transition-all text-sm"
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="space-y-3">
+                                        <label className="text-gray-500 font-black text-[9px] uppercase tracking-widest block ml-4">Data de Nascimento</label>
+                                        <div className="relative">
+                                            <Calendar className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                                            <input
+                                                type="date"
+                                                className="w-full bg-white/5 border border-white/10 p-4 pl-16 rounded-[20px] text-white font-bold focus:border-secondary outline-none transition-all text-sm"
+                                                value={formData.birthdate}
+                                                onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <p className="text-gray-600 text-[9px] font-bold text-center italic px-6 mt-6">Seus dados serão usados apenas para confirmação do seu Drop Havaianas 2030.</p>
                                 </div>
                             ) : step === 3 ? (
                                 <div className="space-y-12">
@@ -582,30 +603,30 @@ const CartModal = ({ isOpen, items, onClose, onRemove }) => {
                         </div>
 
                         {/* Order Summary & Finalize */}
-                        {items.length > 0 && step < 4 && (
-                            <div className="mt-auto pt-10 border-t border-white/10 space-y-8">
-                                <div className="flex justify-between items-end bg-white/5 p-8 rounded-[40px] border border-white/5">
-                                    <div className="space-y-2">
-                                        <p className="text-gray-500 font-black text-[9px] uppercase tracking-[0.4em]">TOTAL DO DROP</p>
-                                        <div className="flex items-center gap-2 text-brGreen font-black text-[10px] uppercase tracking-[0.2em]">
-                                            <ShieldCheck size={16} /> STRIPE SECURE
+                        {items.length > 0 && step < 3 && (
+                            <div className="mt-auto pt-6 border-t border-white/10 space-y-4">
+                                <div className="flex justify-between items-end bg-white/5 p-4 rounded-[20px] border border-white/5">
+                                    <div className="space-y-1">
+                                        <p className="text-gray-500 font-black text-[8px] uppercase tracking-[0.4em]">TOTAL DO DROP</p>
+                                        <div className="flex items-center gap-2 text-brGreen font-black text-[8px] uppercase tracking-[0.2em]">
+                                            <ShieldCheck size={12} /> STRIPE SECURE
                                         </div>
                                     </div>
-                                    <p className="text-5xl md:text-6xl font-black text-white tracking-tighter italic">R$ {total.toFixed(2).replace('.', ',')}</p>
+                                    <p className="text-2xl md:text-3xl font-black text-white tracking-tighter italic">R$ {total.toFixed(2).replace('.', ',')}</p>
                                 </div>
 
                                 <button
                                     onClick={handleNext}
                                     disabled={isProcessing}
-                                    className="w-full py-8 bg-brGreen text-white font-black rounded-[40px] flex items-center justify-center gap-8 hover:bg-secondary hover:text-black transition-all shadow-[0_40px_100px_rgba(0,151,57,0.3)] disabled:opacity-50 group relative overflow-hidden"
+                                    className="w-full py-4 bg-brGreen text-white font-black rounded-[20px] flex items-center justify-center gap-4 hover:bg-secondary hover:text-black transition-all shadow-[0_20px_50px_rgba(0,151,57,0.3)] disabled:opacity-50 group relative overflow-hidden text-sm uppercase tracking-widest"
                                 >
                                     {isProcessing ? (
-                                        <div className="animate-spin rounded-full h-8 w-8 border-4 border-white border-t-transparent" />
+                                        <div className="animate-spin rounded-full h-5 w-5 border-3 border-white border-t-transparent" />
                                     ) : (
                                         <>
-                                            <Lock size={24} />
-                                            <span className="text-xl uppercase tracking-[0.3em]">
-                                                {step === 1 ? 'PROSSEGUIR' : step === 2 ? 'CONFIRMAR DADOS' : 'FINALIZAR AGORA'}
+                                            <Lock size={18} />
+                                            <span className="uppercase tracking-[0.2em]">
+                                                {step === 1 ? 'PROSSEGUIR' : 'ENVIAR PARA WHATSAPP'}
                                             </span>
                                         </>
                                     )}
