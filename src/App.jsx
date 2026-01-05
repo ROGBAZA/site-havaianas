@@ -60,19 +60,29 @@ const ExperienciaSection = () => {
 const BRAZIL_FLAG = "https://upload.wikimedia.org/wikipedia/commons/0/05/Brazil_flag.svg";
 const HERO_IMAGES = [
     {
-        id: 'sunset',
-        src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
-        alt: 'Gradient flip flops under neon light'
+        id: 'floral',
+        src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80',
+        alt: 'White Havaianas with floral straps',
+        rotate: 5,
+        gapClass: 'col-span-2 row-span-2'
     },
     {
-        id: 'street',
-        src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
-        alt: 'Close-up of Havaianas on asphalt'
+        id: 'blue',
+        src: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80',
+        alt: 'Blue Havaianas on marble',
+        rotate: -4
     },
     {
-        id: 'tropical',
-        src: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tropical layout with colorful flip flops'
+        id: 'brazil-flag',
+        src: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80',
+        alt: 'Brazil flag themed Havaianas',
+        rotate: 6
+    },
+    {
+        id: 'sand',
+        src: 'https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=900&q=80',
+        alt: 'Beach sand and pastel flip flops',
+        rotate: -3
     }
 ];
 const PRODUCT_ASSETS = {
@@ -317,7 +327,7 @@ const Navbar = () => {
 const HeroSection = () => (
     <section
         id="hero"
-        className="relative h-screen min-h-[800px] flex items-center overflow-hidden pt-20 lg:pt-0"
+        className="relative min-h-[700px] lg:min-h-[820px] flex items-center overflow-hidden pt-20 lg:pt-0"
         style={{
             backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.92), rgba(0,151,57,0.7)), url(${BRAZIL_FLAG})`,
             backgroundSize: 'cover',
@@ -346,7 +356,7 @@ const HeroSection = () => (
         />
 
         <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-70" />
-        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="space-y-8">
                 <h1 className="text-[8vw] sm:text-[10vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] italic uppercase">
                     BRASIL <br />
@@ -371,19 +381,29 @@ const HeroSection = () => (
                     </button>
                 </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5 }} className="flex justify-center lg:justify-end">
-                <div className="flex flex-wrap gap-6 justify-center">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5 }}
+                className="flex justify-center lg:justify-end"
+            >
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center justify-center lg:max-w-[420px]">
                     {HERO_IMAGES.map((image, index) => (
-                        <motion.img
+                        <motion.div
                             key={image.id}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 + index * 0.15 }}
-                            whileHover={{ scale: 1.04, rotate: index % 2 === 0 ? 3 : -3 }}
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-[190px] h-[240px] object-cover rounded-[30px] shadow-[0_40px_80px_rgba(0,0,0,0.6)] border-[10px] border-black"
-                        />
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                            whileHover={{ scale: 1.05, rotate: image.rotate ?? (index % 2 === 0 ? 3 : -3) }}
+                            className={`relative rounded-[32px] overflow-hidden border-[8px] border-black/80 bg-black/10 shadow-[0_40px_70px_rgba(0,0,0,0.65)] ${image.gapClass ?? ''}`}
+                        >
+                            <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-full min-h-[160px] object-cover object-center transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/10 pointer-events-none" />
+                        </motion.div>
                     ))}
                 </div>
             </motion.div>
