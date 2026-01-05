@@ -85,6 +85,7 @@ const HERO_IMAGES = [
         rotate: -3
     }
 ];
+const PRODUCT_ASSETS = {
     brasilia: 'https://havaianas.com.br/cdn/shop/files/4145602_8275-havaianas-dual-0.jpg?v=1734124769&width=1445',
     neon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkRwy4Nn6dygladZMYSi8Wtv0fDSZgQ_71Dw&s',
     mirrored: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQao1k0Ym5ewfxW_Y3y34TPQTizxRARU7eR9A&s',
