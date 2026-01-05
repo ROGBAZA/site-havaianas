@@ -329,7 +329,7 @@ const HeroSection = () => (
         id="hero"
         className="relative min-h-[700px] lg:min-h-[820px] flex items-center overflow-hidden pt-20 lg:pt-0"
         style={{
-            backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.92), rgba(0,151,57,0.7)), url(${BRAZIL_FLAG})`,
+            backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.95), rgba(0,120,52,0.55) 30%, rgba(0,0,0,0.85)), url(${BRAZIL_FLAG})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
         }}
@@ -355,9 +355,14 @@ const HeroSection = () => (
             className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] border border-secondary/5 rounded-full pointer-events-none"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-brGreen/5 to-black opacity-90" />
+        <div className="absolute inset-y-10 left-0 w-full lg:w-3/5 bg-gradient-to-r from-black/80 via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute bottom-0 right-0 h-ful w-36 bg-gradient-to-l from-[#1d3c1c]/80 to-transparent blur-3xl opacity-70" />
+        </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="space-y-8">
+                <p className="text-[11px] text-secondary uppercase tracking-[0.6em]">Coleção Brasil Hype</p>
                 <h1 className="text-[8vw] sm:text-[10vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] italic uppercase">
                     BRASIL <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-brGreen to-primary">HYPE.</span>
@@ -379,6 +384,11 @@ const HeroSection = () => (
                     >
                         Experiência
                     </button>
+                </div>
+                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-white/60">
+                    <span className="w-12 h-px bg-white/20" />
+                    <span>Toque no verde, sinta o Brasil</span>
+                    <span className="w-12 h-px bg-white/20" />
                 </div>
             </motion.div>
             <motion.div
