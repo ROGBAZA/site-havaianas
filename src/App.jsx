@@ -429,7 +429,7 @@ const CatalogSection = ({ onAddToCart }) => {
         { id: 9, name: "Brasília Premium", price: 69.90, desc: "Ondas de Brasília em cada passo.", image: PRODUCT_ASSETS.brasilia },
         { id: 1, name: "Neon Paulista", price: 54.90, desc: "Alças que brilham na metrópole.", image: PRODUCT_ASSETS.neon },
         { id: 3, name: "Reflexo Copacabana", price: 64.90, desc: "Reflexos dourados para dias de verão.", image: PRODUCT_ASSETS.mirrored },
-        { id: 11, name: "Pastel Amazonas", price: 59.90, desc: "Tons suaves inspirados na floresta.", image: PRODUCT_ASSETS.pastel }
+        { id: 11, name: "Pastel Amazonas", price: 59.90, desc: "Tons suaves inspirados na floresta.", image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80' }
     ];
 
     return (
@@ -472,9 +472,21 @@ const CatalogSection = ({ onAddToCart }) => {
                 </motion.h2>
                 <div className="w-full grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
                     {items.map(item => (
-                        <motion.div key={item.id} whileHover={{ y: -10 }} className="group bg-white/[0.02] rounded-[60px] p-8 border border-white/5 text-left transition-all duration-500 flex flex-col">
+                        <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7 }}
+                            whileHover={{ y: -10 }}
+                            viewport={{ once: true }}
+                            className="group bg-white/[0.02] rounded-[60px] p-8 border border-white/5 text-left transition-all duration-500 flex flex-col"
+                        >
                             <div className="relative aspect-square bg-white/[0.03] rounded-[48px] overflow-hidden flex items-center justify-center p-12 group-hover:bg-white/[0.08] transition-colors">
-                                <img src={item.image} className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+                                <motion.img
+                                    src={item.image}
+                                    className="w-full h-full object-cover transition-transform duration-[1500ms]"
+                                    whileHover={{ scale: 1.1, rotateZ: 1 }}
+                                />
                             </div>
                             <div className="mt-8 flex-grow">
                                 <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-2">{item.name}</h4>
