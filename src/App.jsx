@@ -80,7 +80,7 @@ const HERO_IMAGES = [
     },
     {
         id: 'sand',
-        src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80',
+        src: 'https://armazemdoschinelos.com.br/cdn/shop/products/image.jpg?v=1671147020',
         alt: 'Beach sand and pastel flip flops',
         rotate: -3
     }
