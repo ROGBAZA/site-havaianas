@@ -395,9 +395,9 @@ const HeroSection = () => (
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5 }}
-                className="flex justify-center lg:justify-end"
+                className="flex justify-center lg:justify-end w-full"
             >
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center justify-center lg:max-w-[420px]">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center justify-center lg:max-w-[420px] w-full">
                     {HERO_IMAGES.map((image, index) => (
                         <motion.div
                             key={image.id}
@@ -406,11 +406,14 @@ const HeroSection = () => (
                             transition={{ delay: 0.3 + index * 0.1 }}
                             whileHover={{ scale: 1.05, rotate: image.rotate ?? (index % 2 === 0 ? 3 : -3) }}
                             className={`relative rounded-[32px] overflow-hidden border-[8px] border-black/80 bg-black/10 shadow-[0_40px_70px_rgba(0,0,0,0.65)] ${image.gapClass ?? ''}`}
+                            style={{ perspective: 900 }}
                         >
-                            <img
+                            <motion.img
                                 src={image.src}
                                 alt={image.alt}
-                                className="w-full h-full min-h-[160px] object-cover object-center transition-transform duration-500"
+                                className="w-full h-full min-h-[150px] sm:min-h-[190px] max-h-[240px] object-cover object-center transition-transform duration-500"
+                                whileHover={{ scale: 1.08, rotateY: 8 }}
+                                style={{ transformStyle: 'preserve-3d' }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/10 pointer-events-none" />
                         </motion.div>
