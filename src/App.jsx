@@ -82,6 +82,8 @@ const PRODUCT_ASSETS = {
     pastel: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80',
     models: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80'
 };
+const IMG_HERO = PRODUCT_ASSETS.mirrored;
+const IMG_MODELS = PRODUCT_ASSETS.models;
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
