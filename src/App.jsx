@@ -14,12 +14,74 @@ const SUPABASE_URL = "https://xzsltthkgkoatmchixqo.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6c2x0dGhrZ2tvYXRtY2hpeHFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxNjYwNjUsImV4cCI6MjA3MTc0MjA2NX0.NrXL5BnL9nZ0wrw-4SMhhRQ8leDLMio6rPWKG5Vmc2o";
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const IMG_HERO = "/hero.png";
-const IMG_MODEL_1 = "/hero.png";
-const IMG_MODEL_2 = "/hero.png";
-const IMG_MODEL_3 = "/hero.png";
-const IMG_MODEL_4 = "/hero.png";
-const IMG_MODELS = "/models.png";
+const ExperienciaSection = () => {
+    const journeys = [
+        { id: 'aurora', title: 'Aurora Brasilis', detail: 'Passeio sensorial por rituais de verão, com texturas refletivas e cores metálicas.', emphasis: 'Sensory' },
+        { id: 'urban', title: 'Ritual Urbano', detail: 'Caminhada noturna por avenidas iluminadas, criando ritmo com cada pisada.', emphasis: 'Rhythm' },
+        { id: 'raizes', title: 'Raízes Tropicais', detail: 'Conexão com a floresta, cheiros verdes e sons orgânicos para inspirar novas paletas.', emphasis: 'Roots' }
+    ];
+
+    return (
+        <section id="experiencia" className="py-24 md:py-36 bg-gradient-to-b from-black via-black/80 to-[#001f12] text-white relative overflow-hidden">
+            <div className="container mx-auto px-6 flex flex-col gap-6">
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-4">
+                    <div>
+                        <p className="text-sm uppercase tracking-[0.4em] text-secondary">Experiência Oficial</p>
+                        <h2 className="text-[8vw] md:text-[5vw] font-black uppercase leading-tight">Pise além do catálogo</h2>
+                    </div>
+                    <button onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} className="px-6 py-3 border border-white/20 rounded-full uppercase tracking-[0.4em] text-xs hover:border-secondary transition duration-300">Catalogar</button>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                    {journeys.map(journey => (
+                        <motion.article
+                            key={journey.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -10, borderColor: '#FFCF00' }}
+                            viewport={{ once: true }}
+                            className="border border-white/10 rounded-[40px] bg-white/5 p-8 flex flex-col gap-4 transition-colors duration-400"
+                        >
+                            <div className="flex items-center text-xs uppercase tracking-[0.4em] text-secondary gap-2">
+                                <span className="w-2 h-2 bg-secondary rounded-full" />
+                                <span>{journey.emphasis}</span>
+                            </div>
+                            <h3 className="text-3xl font-black uppercase leading-tight">{journey.title}</h3>
+                            <p className="text-sm text-white/70 leading-relaxed">{journey.detail}</p>
+                            <button className="mt-auto text-sm uppercase tracking-[0.3em] border-b border-white/30 pb-2 hover:text-secondary">Descubra</button>
+                        </motion.article>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const BRAZIL_FLAG = "https://upload.wikimedia.org/wikipedia/commons/0/05/Brazil_flag.svg";
+const HERO_IMAGES = [
+    {
+        id: 'sunset',
+        src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+        alt: 'Gradient flip flops under neon light'
+    },
+    {
+        id: 'street',
+        src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+        alt: 'Close-up of Havaianas on asphalt'
+    },
+    {
+        id: 'tropical',
+        src: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tropical layout with colorful flip flops'
+    }
+];
+const PRODUCT_ASSETS = {
+    brasilia: 'https://images.unsplash.com/photo-1514995669114-7c73d0ac7d9f?auto=format&fit=crop&w=900&q=80',
+    neon: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80',
+    mirrored: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+    pastel: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80',
+    models: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80'
+};
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -110,6 +172,24 @@ const Navbar = () => {
                             transition={{ delay: 1.2 }}
                             whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })}
+                            className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
+                        >
+                            <span className="relative z-10">Experiência</span>
+                        </motion.button>
+                    </motion.div>
+
+                    <motion.div className="relative group">
+                        <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-brGreen/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            whileHover={{ scale: 1.2 }}
+                        />
+                        <motion.button 
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.3 }}
+                            whileHover={{ scale: 1.15, y: -5, color: "#FFCF00" }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={() => document.getElementById('sustentabilidade').scrollIntoView({ behavior: 'smooth' })}
                             className="relative px-6 py-3 hover:text-white transition-all duration-300 rounded-full border border-transparent hover:border-white/20 backdrop-blur-sm"
                         >
@@ -197,7 +277,7 @@ const Navbar = () => {
                                 </motion.button>
                                 
                                 <div className="flex flex-col gap-4">
-                                    {['Havaianas', 'Manifesto', 'Sustentabilidade'].map((item, index) => (
+                                    {['Havaianas', 'Manifesto', 'Experiência', 'Sustentabilidade'].map((item, index) => (
                                         <motion.button
                                             key={item}
                                             initial={{ opacity: 0, x: 50 }}
@@ -209,6 +289,10 @@ const Navbar = () => {
                                                     document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
                                                 } else if (item === 'Manifesto') {
                                                     document.getElementById('união').scrollIntoView({ behavior: 'smooth' });
+                                                } else if (item === 'Experiência') {
+                                                    document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' });
+                                                } else if (item === 'Sustentabilidade') {
+                                                    document.getElementById('sustentabilidade').scrollIntoView({ behavior: 'smooth' });
                                                 }
                                             }}
                                             className="text-left px-6 py-4 text-white font-bold text-lg rounded-full border border-white/10 hover:bg-white/10 hover:border-secondary transition-all duration-300"
@@ -229,25 +313,25 @@ const Navbar = () => {
 };
 
 const HeroSection = () => (
-    <section id="hero" className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black pt-20 lg:pt-0">
-        {/* Animated White Stripe */}
-        <motion.div 
+    <section
+        id="hero"
+        className="relative h-screen min-h-[800px] flex items-center overflow-hidden pt-20 lg:pt-0"
+        style={{
+            backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.92), rgba(0,151,57,0.7)), url(${BRAZIL_FLAG})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+        }}
+    >
+        <motion.div
             animate={{ x: "-100%" }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30 z-10"
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/3 w-[200%] h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-40 z-10"
         />
-        <motion.div 
+        <motion.div
             animate={{ x: "-100%" }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 5 }}
             className="absolute top-1/2 w-[200%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"
         />
-        <motion.div 
-            animate={{ x: "-100%" }}
-            transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 10 }}
-            className="absolute top-3/4 w-[200%] h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20 z-10"
-        />
-        
-        {/* Background Rotating Shapes */}
         <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
@@ -255,23 +339,51 @@ const HeroSection = () => (
         />
         <motion.div
             animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] border border-secondary/5 rounded-full pointer-events-none"
+            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] border border-secondary/5 rounded-full pointer-events-none"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-50" />
-        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
-            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                <h1 className="text-[8vw] sm:text-[10vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] mb-12 italic uppercase">
-                    BRASIL <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-brGreen to-primary">HYPE.</span>
+        <div className="absolute inset-0 bg-gradient-to-br from-brGreen/5 via-black to-secondary/5 opacity-70" />
+        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
+            <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="space-y-8">
+                <h1 className="text-[8vw] sm:text-[10vw] lg:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.08em] italic uppercase">
+                    BRASIL <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-brGreen to-primary">HYPE.</span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-500 font-medium max-w-xl leading-relaxed mb-12 sm:mb-16">A liberdade de um país em cada passo. O ícone global que você já conhece, no futuro que você quer pisar.</p>
-                <button onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })} className="group px-8 sm:px-12 py-4 sm:py-6 bg-secondary text-black font-black rounded-2xl sm:rounded-3xl flex items-center gap-3 sm:gap-4 hover:bg-brGreen hover:text-white transition-all duration-500 shadow-2xl hover:scale-105 active:scale-95 uppercase tracking-widest text-[9px] sm:text-[11px]">
-                    Garanta a Sua <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </button>
+                <p className="text-lg sm:text-xl md:text-2xl text-gray-200 font-medium max-w-lg leading-relaxed">
+                    O salto definitivo da Havaianas: conforto olímpico, alma brasileira e tecnologia que conecta tradições e futuros.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                    <button
+                        onClick={() => document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' })}
+                        className="group px-8 sm:px-12 py-4 sm:py-5 bg-secondary text-black font-black rounded-2xl sm:rounded-3xl flex items-center gap-4 uppercase tracking-widest text-[9px] sm:text-[11px] shadow-2xl hover:bg-brGreen hover:text-white transition-all duration-500 active:scale-95"
+                    >
+                        Garanta a Sua
+                        <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                    </button>
+                    <button
+                        onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })}
+                        className="rounded-full border border-white/30 px-6 py-3 sm:px-8 sm:py-4 text-white font-black uppercase tracking-[0.3em] text-[9px] backdrop-blur-sm hover:border-white/60 transition"
+                    >
+                        Experiência
+                    </button>
+                </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5 }} className="relative group flex justify-center lg:justify-end">
-                <img src={IMG_HERO} className="relative z-10 w-full max-w-[550px] rounded-[60px] md:rounded-[100px] shadow-[0_60px_120px_rgba(0,0,0,0.8)] border border-white/5" />
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5 }} className="flex justify-center lg:justify-end">
+                <div className="flex flex-wrap gap-6 justify-center">
+                    {HERO_IMAGES.map((image, index) => (
+                        <motion.img
+                            key={image.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 + index * 0.15 }}
+                            whileHover={{ scale: 1.04, rotate: index % 2 === 0 ? 3 : -3 }}
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-[190px] h-[240px] object-cover rounded-[30px] shadow-[0_40px_80px_rgba(0,0,0,0.6)] border-[10px] border-black"
+                        />
+                    ))}
+                </div>
             </motion.div>
         </div>
     </section>
@@ -279,75 +391,69 @@ const HeroSection = () => (
 
 const CatalogSection = ({ onAddToCart }) => {
     const items = [
-        { id: 9, name: "Brasil White Logo", price: 59.90, desc: "A legítima alma nacional.", tint: "none", image: IMG_MODEL_1 },
-        { id: 1, name: "Tradicional Azul", price: 39.90, desc: "A clássica global.", tint: "hue-rotate(200deg) saturate(1.8)", image: IMG_MODEL_2 },
-        { id: 3, name: "Top Red Flame", price: 44.90, desc: "Energia urbana.", tint: "hue-rotate(340deg) saturate(2)", image: IMG_MODEL_3 },
-        { id: 11, name: "Brasil Green Mata", price: 59.90, desc: "Força da floresta.", tint: "hue-rotate(130deg) saturate(1.5)", image: IMG_MODEL_4 }
+        { id: 9, name: "Brasília Premium", price: 69.90, desc: "Ondas de Brasília em cada passo.", image: PRODUCT_ASSETS.brasilia },
+        { id: 1, name: "Neon Paulista", price: 54.90, desc: "Alças que brilham na metrópole.", image: PRODUCT_ASSETS.neon },
+        { id: 3, name: "Reflexo Copacabana", price: 64.90, desc: "Reflexos dourados para dias de verão.", image: PRODUCT_ASSETS.mirrored },
+        { id: 11, name: "Pastel Amazonas", price: 59.90, desc: "Tons suaves inspirados na floresta.", image: PRODUCT_ASSETS.pastel }
     ];
 
     return (
         <section id="catalogo" className="py-32 md:py-48 bg-[#080808] relative overflow-hidden">
-            {/* Full Screen Advertising Banner - Moved Here */}
-            <motion.div 
+            <motion.div
                 animate={{ x: "-100%" }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/20 to-transparent flex items-center justify-center overflow-hidden z-20"
+                className="absolute top-0 w-[300%] h-20 bg-gradient-to-r from-transparent via-secondary/20 to-transparent flex items-center justify-center overflow-hidden z-10"
             >
-                <div className="flex items-center gap-8 whitespace-nowrap">
-                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
-                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Novo Lançamento</span>
-                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Coleção Verão</span>
-                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Frete Grátis</span>
-                    <span className="text-secondary font-black text-2xl tracking-[0.3em] uppercase">•</span>
-                    <span className="text-white/60 font-black text-2xl tracking-[0.3em] uppercase">Havaianas • Brasil • 2025</span>
+                <div className="flex items-center gap-8 whitespace-nowrap uppercase tracking-[0.3em] text-2xl font-black text-white/60">
+                    <span>Havaianas • Brasil • 2025</span>
+                    <span className="text-secondary">•</span>
+                    <span>Novo Lançamento</span>
+                    <span className="text-secondary">•</span>
+                    <span>Coleção Verão</span>
+                    <span className="text-secondary">•</span>
+                    <span>Frete Grátis</span>
                 </div>
             </motion.div>
-            
-                        
-            {/* Animated Background Elements */}
-            <motion.div 
+            <motion.div
                 animate={{ x: "-100%" }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                 className="absolute top-10 w-[150%] h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent"
             />
-            <motion.div 
+            <motion.div
                 animate={{ x: "100%" }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 className="absolute bottom-20 w-[150%] h-px bg-gradient-to-r from-transparent via-brGreen/20 to-transparent"
             />
-            
-            <div className="container mx-auto px-6 mb-24 flex flex-col items-center relative z-30">
-                <motion.h2 
+
+            <div className="container mx-auto px-6 flex flex-col items-center relative z-20 space-y-10">
+                <motion.h2
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-[12vw] md:text-[7vw] font-black text-white uppercase tracking-tighter text-center leading-none italic"
+                    className="text-[12vw] md:text-[7vw] font-black text-white uppercase tracking-[0.15em] leading-none text-center"
                 >
                     HAVAIANAS ATUAIS
                 </motion.h2>
-            </div>
-            <div className="container mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                {items.map(item => (
-                    <motion.div key={item.id} whileHover={{ y: -15 }} className="group bg-white/[0.02] rounded-[70px] p-8 border border-white/5 transition-all duration-700 flex flex-col">
-                        <div className="relative aspect-square bg-white/[0.03] rounded-[50px] overflow-hidden flex items-center justify-center p-12 group-hover:bg-white/[0.06] transition-colors">
-                            <img src={item.image} style={{ filter: item.tint }} className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-[2000ms]" />
-                        </div>
-                        <div className="mt-8 flex-grow ml-4">
-                            <h4 className="text-2xl font-black text-white italic uppercase tracking-tighter group-hover:text-secondary transition-colors">{item.name}</h4>
-                            <p className="text-gray-500 text-[10px] mt-2 font-black uppercase tracking-[0.2em]">{item.desc}</p>
-                        </div>
-                        <div className="mt-10 flex justify-between items-center bg-black/40 p-5 rounded-[40px] border border-white/5 group-hover:border-secondary/20 transition-all">
-                            <span className="text-white font-black text-2xl tracking-tighter italic ml-4">R$ {item.price.toFixed(2).replace('.', ',')}</span>
-                            <button onClick={() => onAddToCart(item)} className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center hover:bg-secondary hover:scale-110 active:scale-90 transition-all shadow-xl">
-                                <ShoppingBag size={28} />
-                            </button>
-                        </div>
-                    </motion.div>
-                ))}
+                <div className="w-full grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                    {items.map(item => (
+                        <motion.div key={item.id} whileHover={{ y: -10 }} className="group bg-white/[0.02] rounded-[60px] p-8 border border-white/5 text-left transition-all duration-500 flex flex-col">
+                            <div className="relative aspect-square bg-white/[0.03] rounded-[48px] overflow-hidden flex items-center justify-center p-12 group-hover:bg-white/[0.08] transition-colors">
+                                <img src={item.image} className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+                            </div>
+                            <div className="mt-8 flex-grow">
+                                <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-2">{item.name}</h4>
+                                <p className="text-gray-400 text-[11px] uppercase tracking-[0.3em]">{item.desc}</p>
+                            </div>
+                            <div className="mt-8 flex items-center justify-between bg-black/40 p-5 rounded-[40px] border border-white/10">
+                                <span className="text-white font-black text-2xl italic">R$ {item.price.toFixed(2).replace('.', ',')}</span>
+                                <button onClick={() => onAddToCart(item)} className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all shadow-xl">
+                                    <ShoppingBag size={24} />
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );
@@ -894,6 +1000,7 @@ function App() {
             <HeroSection />
             <CatalogSection onAddToCart={add} />
             <ManifestoSection />
+            <ExperienciaSection />
             <SustentabilidadeSection />
             <ContactSection />
 
